@@ -85,7 +85,7 @@ namespace Loot.Models
 
         private void log(String userName, String item)
         {
-
+            // write the datetime, user, and item, to a THREADSAFE logging mechanism
         }
     }
 }
