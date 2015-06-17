@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.IO;
 using System.Web;
@@ -88,7 +89,6 @@ namespace Loot.Models
                     return null;
                 }
                 cumSum += (decimal)pair.Value;
-                Console.WriteLine("Cumsum: {0}", cumSum);
 
                 randomLookupTable.Add(cumSum, pair.Key);
             }
@@ -106,12 +106,12 @@ namespace Loot.Models
             {
                 String log = String.Format(
                     "{0} {1}: User {2} has been dealt item \"{3}\" from a loot table\n",
-                    DateTime.Now.ToLongTimeString(),
                     DateTime.Now.ToLongDateString(),
+                    DateTime.Now.ToLongTimeString(),
                     userName,
                     item);
                 w.Write(log);
-                Console.Write(log);
+                Trace.Write(log);
 
             }
         }
