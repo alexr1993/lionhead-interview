@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+
+using Loot.Models;
 /**
  * Scenario:
 
@@ -39,33 +41,20 @@ Scroll of wisdom 20
  */
 namespace Loot.Controllers
 {
-    public class LootService : ApiController
+    public class LootController : ApiController
     {
-        // GET api/loot
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private LootTable lootTable { get; set; }
 
-        // GET api/values/5
-        public string Get(int id)
+        public string getLoot(String player)
         {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            if (lootTable != null)
+            {
+                return lootTable.getRandomItem(player);
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

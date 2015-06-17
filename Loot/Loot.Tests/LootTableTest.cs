@@ -6,7 +6,7 @@ using Loot.Models;
 namespace Loot.Tests
 {
     [TestClass]
-    public class LootTableTests
+    public class LootTableTest
     {
         /* Try to create empty table */
         [TestMethod]
