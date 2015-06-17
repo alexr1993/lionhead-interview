@@ -9,7 +9,15 @@ namespace Loot.Models
 {
     public class LootTable
     {
-        public Dictionary<String, decimal> entries
+
+        private Dictionary<String, decimal> entries = new Dictionary<String, decimal>();
+        private Dictionary<decimal, String> randomLookup = new Dictionary<decimal, String>();
+
+        private decimal certaintyValue = 100; // Probability expressed in %
+        private Random rnd = new Random();
+        private static String logFile = "log.txt";
+
+        public Dictionary<String, decimal> Entries
         {
             get
             {
@@ -17,7 +25,7 @@ namespace Loot.Models
             }
             set
             {
-                randomLookup = tryCreateRandomLookupTable(entries);
+                randomLookup = tryCreateRandomLookupTable(value);
 
                 if (randomLookup != null)
                 {
@@ -30,14 +38,10 @@ namespace Loot.Models
                 }
             }
         }
-        private Dictionary<decimal, String> randomLookup = new Dictionary<decimal, String>();
-        private decimal certaintyValue = 100; // Probability expressed in %
-        private Random rnd = new Random();
-        private static String logFile = "log.txt";
 
         public LootTable(Dictionary<String, decimal> entries)
         {
-            this.entries = entries;
+            Entries = entries;
         }
 
         public String getRandomItem(String userName)
@@ -84,10 +88,12 @@ namespace Loot.Models
                     return null;
                 }
                 cumSum += (decimal)pair.Value;
+                Console.WriteLine("Cumsum: {0}", cumSum);
+
                 randomLookupTable.Add(cumSum, pair.Key);
             }
             // Check probability sums to certainty
-            if (entries.Values.Cast<decimal>().Sum() != certaintyValue)
+            if (cumSum != certaintyValue)
             {
                 return null;
             }

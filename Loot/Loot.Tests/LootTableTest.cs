@@ -40,6 +40,7 @@ namespace Loot.Tests
             entries.Add("Sword", 50);
             entries.Add("Shield", 50);
             LootTable table = new LootTable(entries);
+            pass();
         }
 
         [TestMethod]
@@ -49,7 +50,7 @@ namespace Loot.Tests
             Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
             entries.Add("Sword", -20);
             entries.Add("Shield", 120);
-            LootTable table = new LootTable(entries);
+            passIfException(entries);
 
         }
 
@@ -60,7 +61,7 @@ namespace Loot.Tests
             Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
             entries.Add("Sword", 100);
             entries.Add("Shield", 120);
-            LootTable table = new LootTable(entries);
+            passIfException(entries);
         }
 
         [TestMethod]
@@ -70,7 +71,15 @@ namespace Loot.Tests
             entries.Add("Sword", 33.3m);
             entries.Add("Shield", 33.3m);
             entries.Add("Cape", 33.4m);
-            LootTable table = new LootTable(entries);
+            try
+            {
+                LootTable table = new LootTable(entries);
+                pass();
+            }
+            catch (ArgumentException)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
@@ -79,7 +88,15 @@ namespace Loot.Tests
             Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
             entries.Add("Sword", 100);
             LootTable table = new LootTable(entries);
-            table.entries = entries;
+            try
+            {
+                table.Entries = entries;
+                pass();
+            }
+            catch (ArgumentException)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
@@ -88,23 +105,16 @@ namespace Loot.Tests
             Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
             entries.Add("Sword", 100);
             LootTable table = new LootTable(entries);
-            entries.Add("Sword", 100);
-            table.entries = entries;
-        }
-
-        [TestMethod]
-        public void duplicateItems()
-        {
-            Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
-            entries.Add("Sword", 80);
-            entries.Add("Sword", 20);
+            entries = new Dictionary<string, decimal>();
+            entries.Add("Sword", 101);
             try
             {
-                LootTable table = new LootTable(entries);
+                table.Entries = entries;
+                Assert.Fail();
             }
             catch (ArgumentException)
             {
-                Assert.IsTrue(true);
+                pass();
             }
         }
 
@@ -130,6 +140,57 @@ namespace Loot.Tests
         private void pass()
         {
             Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void getItemValid()
+        {
+            Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
+            entries.Add("Sword", 10);
+            entries.Add("Shield", 10);
+            entries.Add("Health Potion", 30);
+            entries.Add("Resurrection Phial", 30);
+            entries.Add("Scroll of wisdom", 20);
+            try
+            {
+                LootTable table = new LootTable(entries);
+                String item = table.getRandomItem("testuser");
+                Assert.AreNotEqual(item, null);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public void getItemInvalid()
+        {
+            Dictionary<String, decimal> entries = new Dictionary<string, decimal>();
+            entries.Add("Sword", 100);
+            try
+            {
+                LootTable table = new LootTable(entries);
+                String item = table.getRandomItem("testuser");
+                Assert.Equals(item, null);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        private void passIfException(Dictionary<String, decimal> entries)
+        {
+            try
+            {
+                LootTable table = new LootTable(entries);
+                Assert.Fail();
+            }
+            catch (ArgumentException)
+            {
+                pass();
+            }
         }
     }
 }
