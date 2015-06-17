@@ -13,11 +13,6 @@ namespace Loot.Controllers
     {
         public LootTable Table { get; set; }
 
-        public LootController()
-        {
-            loadTestTable(new String[] { "Sword", "Shield", "Axe", "Bow" });
-        }
-
         public string getLoot(String player)
         {
             if (Table != null)
