@@ -5,3 +5,14 @@
 13:13:08 17 June 2015: User testuser has been dealt item "Sword" from a loot table
 14:39:45 17 June 2015: User testuser has been dealt item "Health Potion" from a loot table
 14:41:33 17 June 2015: User testuser has been dealt item "Resurrection Phial" from a loot table
+17 June 2015 15:01:16: User testuser has been dealt item "Health Potion" from a loot table
+17 June 2015 15:01:30: User testuser has been dealt item "Health Potion" from a loot table
+17 June 2015 15:01:37: User testuser has been dealt item "Sword" from a loot table
+17 June 2015 15:02:00: User testuser has been dealt item "Resurrection Phial" from a loot table
+17 June 2015 15:02:31: User testuser has been dealt item "Health Potion" from a loot table
+17 June 2015 15:02:41: User testuser has been dealt item "Scroll of wisdom" from a loot table
+17 June 2015 15:02:55: User testuser has been dealt item "Health Potion" from a loot table
+17 June 2015 15:03:06: User testuser has been dealt item "Sword" from a loot table
+17 June 2015 15:04:22: User testuser has been dealt item "Health Potion" from a loot table
+17 June 2015 15:05:35: User testuser has been dealt item "Health Potion" from a loot table
+17 June 2015 15:05:48: User testuser has been dealt item "Resurrection Phial" from a loot table

@@ -10,13 +10,23 @@ namespace Loot.Models
 {
     public class LootTable
     {
-
+        /* This class supports storage and access of the Loot Table entries for the in-game
+         * Loot Chest.
+         * 
+         * Instances cannot exist without a valid set of entries; items with a drop chance summing
+         * to 100, with no negative drop chances, and under {maxItems} entries.
+         *
+         * Client code may roll on the loot chest by calling getRandomItem(userName), returning an
+         * item with the probability provided in the entries dictionary.
+         */
         private Dictionary<String, decimal> entries = new Dictionary<String, decimal>();
-        private Dictionary<decimal, String> randomLookup = new Dictionary<decimal, String>();
+        // Random items can be returned with O(nItems) time and O(nItems) space
+        private SortedDictionary<decimal, String> randomLookup = new SortedDictionary<decimal, String>();
 
         private decimal certaintyValue = 100; // Probability expressed in %
         private Random rnd = new Random();
         private static String logFile = "log.txt";
+        private static int maxItems = 30;
 
         public Dictionary<String, decimal> Entries
         {
@@ -34,8 +44,7 @@ namespace Loot.Models
                 }
                 else
                 {
-                    throw new ArgumentException(
-                        "Entry table is invalid, ensure drop chances sum to 100");
+                    throw new ArgumentException("Entry table is invalid");
                 }
             }
         }
@@ -53,7 +62,7 @@ namespace Loot.Models
             }
 
             // Randomly select item based on drop chance
-            decimal random = rnd.Next(1, 100);
+            decimal random = rnd.Next(1, 101); // random is in [1, 100]
             String item = "";
 
             // Find the item whose range we have fallen in
@@ -70,14 +79,17 @@ namespace Loot.Models
         }
 
 
-        /* Validates entries, returns table to lookup the return item if valid */
-        private Dictionary<decimal, String> tryCreateRandomLookupTable(Dictionary<String, decimal> entries)
+        /* Validates entries, returns table to lookup the return item if valid
+         * 
+         * The random lookup table allows us to check which item a random number from 1-100 corresponds to
+         */
+        private SortedDictionary<decimal, String> tryCreateRandomLookupTable(Dictionary<String, decimal> entries)
         {
-            if (entries == null)
+            if (entries == null || entries.Count > maxItems)
             {
                 return null;
             }
-            Dictionary<decimal, String> randomLookupTable = new Dictionary<decimal, String>();
+            SortedDictionary<decimal, String> randomLookupTable = new SortedDictionary<decimal, String>();
             // Create a numeric milestone for each item given by cumulative sum
             decimal cumSum = 0;
 
