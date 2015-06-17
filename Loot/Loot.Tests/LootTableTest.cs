@@ -171,8 +171,8 @@ namespace Loot.Tests
             try
             {
                 LootTable table = new LootTable(entries);
-                String item = table.getRandomItem("testuser");
-                Assert.Equals(item, null);
+                String item = table.getRandomItem(null);
+                Assert.IsNull(item);
             }
             catch
             {
