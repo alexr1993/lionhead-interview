@@ -3,3 +3,4 @@
 13:11:58 17 June 2015: User testuser has been dealt item "Sword" from a loot table
 13:12:31 17 June 2015: User testuser has been dealt item "Sword" from a loot table
 13:13:08 17 June 2015: User testuser has been dealt item "Sword" from a loot table
+14:39:45 17 June 2015: User testuser has been dealt item "Health Potion" from a loot table
