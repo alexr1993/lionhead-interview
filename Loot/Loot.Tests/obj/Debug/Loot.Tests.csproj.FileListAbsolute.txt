@@ -3,7 +3,6 @@
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\Loot.Tests.pdb
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\Loot.dll
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Mvc.dll
-\\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Http.dll
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Optimization.dll
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Net.Http.Formatting.dll
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Http.WebHost.dll
