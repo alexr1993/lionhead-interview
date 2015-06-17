@@ -11,18 +11,35 @@ namespace Loot.Controllers
 {
     public class LootController : ApiController
     {
-        private LootTable lootTable { get; set; }
+        public LootTable Table { get; set; }
+
+        public LootController()
+        {
+            loadTestTable(new String[] { "Sword", "Shield", "Axe", "Bow" });
+        }
 
         public string getLoot(String player)
         {
-            if (lootTable != null)
+            if (Table != null)
             {
-                return lootTable.getRandomItem(player);
+                return Table.getRandomItem(player);
             }
             else
             {
                 return "";
             }
+        }
+
+        public void loadTestTable(String[] items)
+        {
+            int certainty = 100;
+            int nItems = 4; // This must be a divisor of 100
+            Dictionary<String, decimal> entries = new Dictionary<String, decimal>();
+            foreach (String item in items)
+            {
+                entries.Add(item, certainty / nItems);
+            }
+            Table = new LootTable(entries);
         }
     }
 }

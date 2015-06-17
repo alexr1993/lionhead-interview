@@ -114,18 +114,23 @@ namespace Loot.Models
 
         private void log(String userName, String item)
         {
-            using (StreamWriter w = new System.IO.StreamWriter(logFile, true))
+            try
             {
-                String log = String.Format(
-                    "{0} {1}: User {2} has been dealt item \"{3}\" from a loot table\n",
-                    DateTime.Now.ToLongDateString(),
-                    DateTime.Now.ToLongTimeString(),
-                    userName,
-                    item);
-                w.Write(log);
-                Trace.Write(log);
+                using (StreamWriter w = new System.IO.StreamWriter(logFile, true))
+                {
+                    String log = String.Format(
+                        "{0} {1}: User {2} has been dealt item \"{3}\" from a loot table\n",
+                        DateTime.Now.ToLongDateString(),
+                        DateTime.Now.ToLongTimeString(),
+                        userName,
+                        item);
+                    w.Write(log);
+                    Trace.Write(log);
 
+                }
             }
+            catch (UnauthorizedAccessException) { } // Developing on university server
+
         }
     }
 }

@@ -13,7 +13,6 @@
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\Loot.pdb
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Mvc.xml
-\\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Http.xml
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Optimization.xml
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Net.Http.Formatting.xml
 \\myfiles\ajr36\dos\lionhead-interview\Loot\Loot.Tests\bin\Debug\System.Web.Http.WebHost.xml
